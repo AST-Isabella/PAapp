@@ -98,5 +98,7 @@
     <string name="Analysis">Analysis</string>
     <string name="Resources">Resources</string>
     <string name="Exercises">Exercises</string>
+    <string name="info1">https://www.nimh.nih.gov/health/publications/panic-disorder-when-fear-overwhelms/index.shtml</string>
+    <string name="info2">https://findtreatment.samhsa.gov/</string>
     <string name="this_is_the_resources_screen">this is the resource screen</string>
 </resources>
