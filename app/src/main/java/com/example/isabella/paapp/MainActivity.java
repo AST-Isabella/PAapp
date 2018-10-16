@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //This is the button from the main screen that goes to the Info screen
-        Button InfoScreenBtn = findViewById(R.id.InfoBtn);
-        InfoScreenBtn.setOnClickListener(new View.OnClickListener() {
+        Button ResourcesScreenBtn = findViewById(R.id.ResourcesBtn);
+        ResourcesScreenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), InfoScreen.class);
+                Intent startIntent = new Intent(getApplicationContext(), ResourcesScreen.class);
                 startActivity(startIntent);
             }
         });
@@ -48,7 +48,16 @@ public class MainActivity extends AppCompatActivity {
         SettingsScreenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), SettingsScreen.class);
+                Intent startIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(startIntent);
+            }
+        });
+        //This is the button from the main screen that goes to the exercises screen
+        Button ExerciseScreenBtn = findViewById(R.id.ExerciseBtn);
+        ExerciseScreenBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), ExerciseScreen.class);
                 startActivity(startIntent);
             }
         });

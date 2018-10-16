@@ -28,12 +28,15 @@
         </activity>
         <activity android:name=".StartScreen" />
         <activity android:name=".ReviewScreen" />
-        <activity android:name=".InfoScreen" />
-        <activity android:name=".SettingsScreen" />
+        <activity android:name=".ResourcesScreen" />
         <activity android:name=".CalibrateScreen" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".ExerciseScreen"></activity>
     </application>
 
 </manifest>
