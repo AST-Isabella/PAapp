@@ -3,9 +3,16 @@
     package="com.example.isabella.paapp">
 
     <uses-feature android:name="android.bluetooth" />
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
+    <!--//the above line was added, but required should be set to true, and a fn added to determine
+    //if the user's device has BLE capabilities "However, if you want to make your app available to
+    //devices that don't support BLE, you should still include this element in your app's manifest,
+    //but set required="false". Then at run-time you can determine BLE availability by using
+    //PackageManager.hasSystemFeature():"-->
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -33,9 +40,6 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
         <activity android:name=".ExerciseScreen"></activity>
     </application>
 

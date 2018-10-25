@@ -6,18 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".CalibrateScreen">
 
-    <TextView
-        android:id="@+id/calibrateScreenTxt"
+    <Button
+        android:id="@+id/BTbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="This is the calibrate screen"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="149dp"
+        android:text="@string/Bluetooth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
