@@ -45,7 +45,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.isabella.paapp.StartScreen" />
         <activity android:name="com.example.isabella.paapp.ReviewScreen" />
         <activity android:name="com.example.isabella.paapp.ResourcesScreen" />
         <activity android:name="com.example.isabella.paapp.CalibrateScreen" />
@@ -53,6 +52,7 @@
             android:name="com.example.isabella.paapp.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name="com.example.isabella.paapp.ExerciseScreen" />
+        <activity android:name="com.example.isabella.paapp.StartScreen" />
     </application>
 
 </manifest>
