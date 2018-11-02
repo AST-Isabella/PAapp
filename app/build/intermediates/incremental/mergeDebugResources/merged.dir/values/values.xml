@@ -1679,14 +1679,24 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="app_name">my PA app</string>
     <string name="calibrate">Calibrate</string>
+    <string name="checkBoxActivity">Overall Activity Level (scale from 1-10)</string>
+    <string name="checkBoxGSR">Galvanic Skin Response (scale from 1-10)</string>
+    <string name="checkBoxHR">Heart Rate (beats per minute)</string>
+    <string name="checkBoxRR">Respiration Rate (breaths per minute)</string>
+    <string name="endDate">End Date: </string>
     <string name="error_field_required">This field is required</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
+    <string name="exerciseInstructions">Exercise Instructions</string>
+    <string name="exerciseReminder">Set Reminder</string>
     <string name="home">home</string>
     <string name="info">Info</string>
     <string name="info1">https://www.nimh.nih.gov/health/publications/panic-disorder-when-fear-overwhelms/index.shtml</string>
     <string name="info2">https://findtreatment.samhsa.gov/</string>
+    <string name="info3">https://clinicaltrials.gov/ct2/show/NCT02826096</string>
+    <string name="info4"/>
+    <string name="okay">OK</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
@@ -1708,13 +1718,17 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
+    <string name="resourceInstructions">Click on these links to find out more about panic attacks and biofeedback therapy:</string>
     <string name="review">Review</string>
+    <string name="reviewExercise">Review Exercise History</string>
+    <string name="reviewPrompt">Select the measurements you want to view, and enter the start and end dates:</string>
     <string name="search_menu_title">Search</string>
     <string name="settings">Settings</string>
     <string name="start">Start</string>
+    <string name="startDate">Start Date: </string>
+    <string name="startExercise">Start Exercises</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="this_is_the_exercise_screen">this is the exercise screen</string>
-    <string name="this_is_the_resources_screen">this is the resource screen</string>
     <string name="title_activity_login">Sign in</string>
     <string name="title_activity_settings">Settings</string>
     <string name="welcome">Welcome to the panic attack management app</string>

@@ -101,7 +101,29 @@
     <string name="Analysis">Analysis</string>
     <string name="Resources">Resources</string>
     <string name="Exercises">Exercises</string>
+
+    //links for the resources screen
     <string name="info1">https://www.nimh.nih.gov/health/publications/panic-disorder-when-fear-overwhelms/index.shtml</string>
     <string name="info2">https://findtreatment.samhsa.gov/</string>
-    <string name="this_is_the_resources_screen">this is the resource screen</string>
+    <string name="info3">https://clinicaltrials.gov/ct2/show/NCT02826096</string>
+    <string name="info4"></string>
+
+    <string name="resourceInstructions">Click on these links to find out more about panic attacks and biofeedback therapy:</string>
+
+    //button names for exercise screen
+    <string name="startExercise">Start Exercises</string>
+    <string name="reviewExercise">Review Exercise History</string>
+    <string name="exerciseInstructions">Exercise Instructions</string>
+    <string name="exerciseReminder">Set Reminder</string>
+
+    //strings on the review screen
+    @string/reviewPrompt
+    <string name="reviewPrompt">Select the measurements you want to view, and enter the start and end dates:</string>
+    <string name="checkBoxHR">Heart Rate (beats per minute)</string>
+    <string name="checkBoxGSR">Galvanic Skin Response (scale from 1-10)</string>
+    <string name="checkBoxRR">Respiration Rate (breaths per minute)</string>
+    <string name="checkBoxActivity">Overall Activity Level (scale from 1-10)</string>
+    <string name="startDate">Start Date: </string>
+    <string name="endDate">End Date: </string>
+    <string name="okay">OK</string>
 </resources>

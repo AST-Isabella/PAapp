@@ -53,6 +53,10 @@
             android:label="@string/title_activity_login" />
         <activity android:name="com.example.isabella.paapp.ExerciseScreen" />
         <activity android:name="com.example.isabella.paapp.StartScreen" />
+        <activity android:name="com.example.isabella.paapp.SettingsScreen" />
+        <activity android:name="com.example.isabella.paapp.StartExerciseScreen" />
+        <activity android:name="com.example.isabella.paapp.ReviewExerciseScreen" />
+        <activity android:name="com.example.isabella.paapp.ExerciseInstructionsScreen" />
 
         <provider
             android:name="com.android.tools.ir.server.InstantRunContentProvider"

@@ -19,22 +19,46 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/ResourcesInstructions"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/resourceInstructions"
+            android:textColor="@color/colorPrimaryDark"/>
 
         <TextView
             android:id="@+id/InfoURL1"
-            android:autoLink="web"
             android:layout_width="match_parent"
-            android:layout_height="99dp"
-            android:text="@string/info1" />
+            android:layout_height="60dp"
+            android:autoLink="web"
+            android:text="@string/info1"
+            android:textColorLink="@color/colorPrimaryDark" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/InfoURL2"
             android:layout_width="match_parent"
-            android:layout_height="85dp"
+            android:layout_height="60dp"
             android:autoLink="web"
             android:text="@string/info2"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColorLink="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/InfoURL3"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:autoLink="web"
+            android:text="@string/info3"
+            android:textColorLink="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/InfoURL4"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/info4" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

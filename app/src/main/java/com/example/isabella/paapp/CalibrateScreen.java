@@ -15,9 +15,13 @@ import android.widget.Button;
 public class CalibrateScreen extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+
+    //the following code sets up bluetooth in the android device
     BluetoothAdapter mBluetoothAdapter;
 
-    // Create a BroadcastReceiver for ACTION_FOUND.
+    // Create a BroadcastReceiver for ACTION_FOUND. this method may be able to be removed,
+    // run a test on physical device to see if commenting this out makes a difference
+
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -25,28 +29,25 @@ public class CalibrateScreen extends AppCompatActivity {
                 final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, mBluetoothAdapter.ERROR);
                 switch (state){
                     case BluetoothAdapter.STATE_OFF:
-                        Log.d(TAG, "broadcast receiver: state off");
                         break;
                     case BluetoothAdapter.STATE_TURNING_OFF:
-                        Log.d(TAG, "broadcast receiver: state turning off");
                         break;
                     case BluetoothAdapter.STATE_ON:
-                        Log.d(TAG, "broadcast receiver: state on");
                         break;
                     case BluetoothAdapter.STATE_TURNING_ON:
-                        Log.d(TAG, "broadcast receiver: state turning on ");
                         break;
                 }
             }
         }
     };
 
+    //this is necessary
     @Override
     protected void onDestroy(){
-        Log.d(TAG, "onDestroy called");
         super.onDestroy();
         unregisterReceiver(mReceiver);
     }
+
     //    Here is the code for the button to turn on or off bluetooth
     @Override
     protected void onCreate(Bundle savedInstanceState) {
