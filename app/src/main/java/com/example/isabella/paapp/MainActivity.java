@@ -42,14 +42,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //This is the button from the main screen that goes to the Settings screen
-        /*Button SettingsScreenBtn = findViewById(R.id.SettingsBtn);
+        Button SettingsScreenBtn = findViewById(R.id.SettingsBtn);
         SettingsScreenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), SettingsScreen.class);
                 startActivity(startIntent);
             }
-        });*/
-
+        });
+        //This is the button from the main screen that goes to the Exercises screen
+        Button ExerciseScreenBtn = findViewById(R.id.ExerciseBtn);
+        ExerciseScreenBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), ExerciseScreen.class);
+                startActivity(startIntent);
+            }
+        });
     }
 }

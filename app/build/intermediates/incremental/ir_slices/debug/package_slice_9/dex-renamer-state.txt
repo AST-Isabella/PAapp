@@ -1,0 +1,4 @@
+#Fri Nov 02 17:43:26 CDT 2018
+base.0=C\:\\Users\\Isabella\\Documents\\GitHub\\PAapp\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\9
+path.0=classes.dex
+renamed.0=classes.dex

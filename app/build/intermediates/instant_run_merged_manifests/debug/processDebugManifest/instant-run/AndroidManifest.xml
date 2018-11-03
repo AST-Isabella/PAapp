@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.isabella.paapp"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="28" />
+
+    <uses-feature android:name="android.bluetooth" />
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+    <!--
+    //the above line was added, but required should be set to true, and a fn added to determine
+    //if the user's device has BLE capabilities "However, if you want to make your app available to
+    //devices that don't support BLE, you should still include this element in your app's manifest,
+    //but set required="false". Then at run-time you can determine BLE availability by using
+    //PackageManager.hasSystemFeature():"
+    -->
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:allowBackup="true"
+        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
+        android:debuggable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:testOnly="true"
+        android:theme="@style/AppTheme" >
+        <activity android:name="com.example.isabella.paapp.MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.isabella.paapp.ReviewScreen" />
+        <activity android:name="com.example.isabella.paapp.ResourcesScreen" />
+        <activity android:name="com.example.isabella.paapp.CalibrateScreen" />
+        <activity
+            android:name="com.example.isabella.paapp.LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity android:name="com.example.isabella.paapp.ExerciseScreen" />
+        <activity android:name="com.example.isabella.paapp.StartScreen" />
+        <activity android:name="com.example.isabella.paapp.SettingsScreen" />
+        <activity android:name="com.example.isabella.paapp.StartExerciseScreen" />
+        <activity android:name="com.example.isabella.paapp.ReviewExerciseScreen" />
+        <activity android:name="com.example.isabella.paapp.ExerciseInstructionsScreen" />
+
+        <provider
+            android:name="com.android.tools.ir.server.InstantRunContentProvider"
+            android:authorities="com.example.isabella.paapp.com.android.tools.ir.server.InstantRunContentProvider"
+            android:multiprocess="true" />
+    </application>
+
+</manifest>

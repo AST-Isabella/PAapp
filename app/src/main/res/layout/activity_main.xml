@@ -7,64 +7,50 @@
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="25dp">
 
-    <Button
-        android:id="@+id/StartBtn"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:background="@color/colorPrimary"
-        android:focusable="true"
-        android:text="@string/Quickstart"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:clickable="true" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/ReviewBtn"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:focusable="true"
-        android:text="@string/Analysis"
-        app:layout_constraintStart_toStartOf="@+id/StartBtn"
-        app:layout_constraintTop_toBottomOf="@+id/StartBtn"
-        tools:clickable="true" />
+        <Button
+            android:id="@+id/StartBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Quickstart" />
 
-    <Button
-        android:id="@+id/ResourcesBtn"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:focusable="true"
-        android:text="@string/Resources"
-        app:layout_constraintStart_toStartOf="@+id/ExerciseBtn"
-        app:layout_constraintTop_toBottomOf="@+id/ExerciseBtn"
-        tools:clickable="true" />
+        <Button
+            android:id="@+id/ReviewBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Analysis" />
 
-    <Button
-        android:id="@+id/SettingsBtn"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:focusable="true"
-        android:text="@string/settings"
-        app:layout_constraintStart_toStartOf="@+id/ResourcesBtn"
-        app:layout_constraintTop_toBottomOf="@+id/ResourcesBtn"
-        tools:clickable="true" />
+        <Button
+            android:id="@+id/ResourcesBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Resources" />
 
-    <Button
-        android:id="@+id/ExerciseBtn"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="@string/Exercises"
-        app:layout_constraintStart_toStartOf="@+id/ReviewBtn"
-        app:layout_constraintTop_toBottomOf="@+id/ReviewBtn" />
+        <Button
+            android:id="@+id/SettingsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings" />
 
+        <Button
+            android:id="@+id/ExerciseBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Exercises" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
