@@ -17,6 +17,7 @@
 package com.example.isabella.paapp;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.content.BroadcastReceiver;
@@ -27,7 +28,9 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,7 +41,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * For a given BLE device, this Activity provides the user interface to connect, display data,
@@ -62,7 +70,9 @@ public class DeviceControlActivity extends Activity {
             new ArrayList<ArrayList<BluetoothGattCharacteristic>>();
     private boolean mConnected = false;
     private BluetoothGattCharacteristic mNotifyCharacteristic;
-    public static ArrayList<String> datalist = new ArrayList<>();
+    public static Queue<Integer> datalist = new LinkedList<>();
+
+    UIUpdater mUIUpdater;
 
     private final String LIST_NAME = "NAME";
     private final String LIST_UUID = "UUID";
@@ -111,6 +121,7 @@ public class DeviceControlActivity extends Activity {
                 displayGattServices(mBluetoothLeService.getSupportedGattServices());
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
+                datalist.add(Integer.parseInt(intent.getStringExtra(BluetoothLeService.EXTRA_DATA)));
             }
         }
     };
@@ -124,6 +135,7 @@ public class DeviceControlActivity extends Activity {
                 @Override
                 public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
                                             int childPosition, long id) {
+                    Handler h = new Handler();
                     if (mGattCharacteristics != null) {
                         final BluetoothGattCharacteristic characteristic =
                                 mGattCharacteristics.get(groupPosition).get(childPosition);
@@ -138,7 +150,15 @@ public class DeviceControlActivity extends Activity {
                                 mNotifyCharacteristic = null;
                             }
 
-                            mBluetoothLeService.readCharacteristic(characteristic);
+                            mUIUpdater = new UIUpdater(new Runnable(){
+                                @Override
+                                public void run(){
+                                    mBluetoothLeService.readCharacteristic(characteristic);
+                                }
+                            });
+
+                            mUIUpdater.startUpdates();
+
 
                         }
                         if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
@@ -177,6 +197,8 @@ public class DeviceControlActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+
+
     }
 
     @Override
@@ -200,6 +222,7 @@ public class DeviceControlActivity extends Activity {
         super.onDestroy();
         unbindService(mServiceConnection);
         mBluetoothLeService = null;
+        mUIUpdater.stopUpdates();
     }
 
     @Override
@@ -310,5 +333,68 @@ public class DeviceControlActivity extends Activity {
         intentFilter.addAction(BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED);
         intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
         return intentFilter;
+    }
+
+    /**
+     * A class used to perform periodical updates,
+     * specified inside a runnable object. An update interval
+     * may be specified (otherwise, the class will perform the
+     * update every 2 seconds).
+     *
+     * @author Carlos Simões
+     */
+    public class UIUpdater {
+        // Create a Handler that uses the Main Looper to run in
+        private Handler mHandler = new Handler(Looper.getMainLooper());
+
+        private Runnable mStatusChecker;
+        private int UPDATE_INTERVAL = 100;
+
+        /**
+         * Creates an UIUpdater object, that can be used to
+         * perform UIUpdates on a specified time interval.
+         *
+         * @param uiUpdater A runnable containing the update routine.
+         */
+        public UIUpdater(final Runnable uiUpdater) {
+            mStatusChecker = new Runnable() {
+                @Override
+                public void run() {
+                    // Run the passed runnable
+                    uiUpdater.run();
+                    // Re-run it after the update interval
+                    mHandler.postDelayed(this, UPDATE_INTERVAL);
+                }
+            };
+        }
+
+        /**
+         * The same as the default constructor, but specifying the
+         * intended update interval.
+         *
+         * @param uiUpdater A runnable containing the update routine.
+         * @param interval  The interval over which the routine
+         *                  should run (milliseconds).
+         */
+        public UIUpdater(Runnable uiUpdater, int interval){
+            this(uiUpdater);
+            UPDATE_INTERVAL = interval;
+        }
+
+        /**
+         * Starts the periodical update routine (mStatusChecker
+         * adds the callback to the handler).
+         */
+        public synchronized void startUpdates(){
+            mStatusChecker.run();
+        }
+
+        /**
+         * Stops the periodical update routine from running,
+         * by removing the callback.
+         */
+        public synchronized void stopUpdates(){
+            mHandler.removeCallbacks(mStatusChecker);
+        }
     }
 }

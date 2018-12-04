@@ -45,7 +45,7 @@ public class CalibrateScreen extends AppCompatActivity {
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        unregisterReceiver(mReceiver);
+        //unregisterReceiver(mReceiver);
     }
 
     //    Here is the code for the button to turn on or off bluetooth
@@ -74,6 +74,7 @@ public class CalibrateScreen extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+
 
     }
 

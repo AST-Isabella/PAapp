@@ -37,6 +37,7 @@ MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Matthew\.gradle\c
 MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Matthew\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\8ae47250af590b63601320ce9d5ab0a5\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Matthew\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\8d1e5c8fd62b8bf2db8b6ca5d89821e8\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Matthew\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\d73e3479b8d1a930adf02aaca6d25609\AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0-alpha] C:\Users\Matthew\.gradle\caches\transforms-1\files-1.1\MPAndroidChart-v3.1.0-alpha.aar\8a3b849cafc406b9c85046539c5db8f4\AndroidManifest.xml:2:1-20:12
 INJECTED from C:\Users\Matthew\Documents\GitHub\PAapp\app\src\main\AndroidManifest.xml:2:1-71:12
 INJECTED from C:\Users\Matthew\Documents\GitHub\PAapp\app\src\main\AndroidManifest.xml:2:1-71:12
 INJECTED from C:\Users\Matthew\Documents\GitHub\PAapp\app\src\main\AndroidManifest.xml:2:1-71:12
@@ -262,6 +263,8 @@ MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Matthew\.gradl
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Matthew\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\8d1e5c8fd62b8bf2db8b6ca5d89821e8\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Matthew\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\d73e3479b8d1a930adf02aaca6d25609\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Matthew\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\d73e3479b8d1a930adf02aaca6d25609\AndroidManifest.xml:20:5-44
+MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0-alpha] C:\Users\Matthew\.gradle\caches\transforms-1\files-1.1\MPAndroidChart-v3.1.0-alpha.aar\8a3b849cafc406b9c85046539c5db8f4\AndroidManifest.xml:16:5-18:41
+MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0-alpha] C:\Users\Matthew\.gradle\caches\transforms-1\files-1.1\MPAndroidChart-v3.1.0-alpha.aar\8a3b849cafc406b9c85046539c5db8f4\AndroidManifest.xml:16:5-18:41
 INJECTED from C:\Users\Matthew\Documents\GitHub\PAapp\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\Matthew\Documents\GitHub\PAapp\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
