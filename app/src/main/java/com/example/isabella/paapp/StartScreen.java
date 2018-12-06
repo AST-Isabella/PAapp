@@ -52,9 +52,8 @@ public class StartScreen extends AppCompatActivity {
         newdata = datalist;
 
         for (int i = 0; i<newdata.size(); i++){
-            if (newdata.peek()!=null) {
-                entries.add(new Entry(i, newdata.poll()));
-            }
+            entries.add(new Entry(i, newdata.poll()));
+
         }
 
         LineDataSet dataSet = new LineDataSet(entries, "EDR");

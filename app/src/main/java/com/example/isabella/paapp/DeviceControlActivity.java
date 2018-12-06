@@ -150,14 +150,14 @@ public class DeviceControlActivity extends Activity {
                                 mNotifyCharacteristic = null;
                             }
 
-                            mUIUpdater = new UIUpdater(new Runnable(){
-                                @Override
-                                public void run(){
-                                    mBluetoothLeService.readCharacteristic(characteristic);
-                                }
-                            });
+                            //mUIUpdater = new UIUpdater(new Runnable(){
+                            //    @Override
+                            //    public void run(){
+                            mBluetoothLeService.readCharacteristic(characteristic);
+                            //    }
+                            //});
 
-                            mUIUpdater.startUpdates();
+                            //mUIUpdater.startUpdates();
 
 
                         }
@@ -222,7 +222,7 @@ public class DeviceControlActivity extends Activity {
         super.onDestroy();
         unbindService(mServiceConnection);
         mBluetoothLeService = null;
-        mUIUpdater.stopUpdates();
+        //mUIUpdater.stopUpdates();
     }
 
     @Override
