@@ -40,32 +40,77 @@ import static com.example.isabella.paapp.DeviceControlActivity.datalist;
 
 public class StartScreen extends AppCompatActivity {
     Queue<Integer> newdata;
-    List<Entry> entries;
+    Queue<Integer> gsraverage,respaverage;
+    List<Entry> gsrentries, respentries;
+    ExponentialMovingAverage gsrworker,respworker;
+    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_screen);
-        LineChart chart = (LineChart) findViewById(R.id.chart);
+        LineChart gsrchart = (LineChart) findViewById(R.id.gsrchart);
+        LineChart respchart = (LineChart) findViewById(R.id.respchart);
 
-        entries = new ArrayList<Entry>();
+        gsrworker = new ExponentialMovingAverage(.5);
+        respworker = new ExponentialMovingAverage(.2);
+        gsrentries = new ArrayList<Entry>();
+        respentries = new ArrayList<Entry>();
         newdata = datalist;
+        gsraverage = new LinkedList<>();
+        respaverage = new LinkedList<>();
 
-        for (int i = 0; i<newdata.size(); i++){
-            entries.add(new Entry(i, newdata.poll()));
-
+        for (Integer b : newdata){
+            if (b>1100) {
+                respaverage.add((int) Math.round(respworker.average((double) b)));
+            }
+            else
+                gsraverage.add((int) Math.round(gsrworker.average((double) b)));
         }
 
-        LineDataSet dataSet = new LineDataSet(entries, "EDR");
+        for (int d : gsraverage){
+            i++;
+            gsrentries.add(new Entry(i, d));
+        }
+        i=0;
+        for (int d : respaverage){
+            i++;
+            respentries.add(new Entry(i, d));
+        }
 
-        LineData lineData = new LineData(dataSet);
-        chart.setData(lineData);
-        chart.invalidate();
+        LineDataSet gsrDataSet = new LineDataSet(gsrentries, "EDR");
+        LineDataSet respDataSet = new LineDataSet(respentries, "Resp");
+
+        LineData gsrLineData = new LineData(gsrDataSet);
+        gsrchart.setData(gsrLineData);
+        gsrchart.invalidate();
+
+        LineData respLineData = new LineData(respDataSet);
+        respchart.setData(respLineData);
+        respchart.invalidate();
     }
 
     @Override
     protected void onResume(){
         super.onResume();
+    }
+
+    class ExponentialMovingAverage {
+        private double alpha;
+        private Double oldValue;
+        public ExponentialMovingAverage(double alpha){
+            this.alpha = alpha;
+        }
+
+        public double average (double value) {
+            if (oldValue == null){
+                oldValue = value;
+                return value;
+            }
+            double newValue = oldValue + alpha*(value-oldValue);
+            oldValue = newValue;
+            return newValue;
+        }
     }
 
 }

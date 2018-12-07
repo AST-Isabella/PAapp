@@ -128,13 +128,13 @@ public class BluetoothLeService extends Service {
 
         int flag = characteristic.getProperties();
         int format = -1;
-        if ((flag & 0x01) != 0) {
+        //if ((flag & 0x01) != 0) {
             format = BluetoothGattCharacteristic.FORMAT_UINT16;
             Log.d(TAG, "Heart rate format UINT16.");
-        } else {
-            format = BluetoothGattCharacteristic.FORMAT_UINT8;
-            Log.d(TAG, "Heart rate format UINT8.");
-        }
+        //} else {
+        //    format = BluetoothGattCharacteristic.FORMAT_UINT8;
+        //    Log.d(TAG, "Heart rate format UINT8.");
+        //}
 
         final int sentdata = characteristic.getIntValue(format, 0);
         Log.d(TAG, String.format("Received data: %d", sentdata));

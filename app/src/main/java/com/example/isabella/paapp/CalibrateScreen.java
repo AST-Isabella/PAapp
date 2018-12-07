@@ -65,17 +65,6 @@ public class CalibrateScreen extends AppCompatActivity {
                 enableDisableBT();
             }
         });
-
-        Button ConnectionBtn = findViewById(R.id.ConnectionBtn);
-        ConnectionBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(),DeviceScanActivity.class);
-                startActivity(startIntent);
-            }
-        });
-
-
     }
 
     public void enableDisableBT(){

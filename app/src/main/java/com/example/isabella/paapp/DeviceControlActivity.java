@@ -35,6 +35,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
@@ -71,8 +72,6 @@ public class DeviceControlActivity extends Activity {
     private boolean mConnected = false;
     private BluetoothGattCharacteristic mNotifyCharacteristic;
     public static Queue<Integer> datalist = new LinkedList<>();
-
-    UIUpdater mUIUpdater;
 
     private final String LIST_NAME = "NAME";
     private final String LIST_UUID = "UUID";
@@ -141,24 +140,14 @@ public class DeviceControlActivity extends Activity {
                                 mGattCharacteristics.get(groupPosition).get(childPosition);
                         final int charaProp = characteristic.getProperties();
                         if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0) {
-                            // this is what I'm looking for, when the button is pushed, this thing is set up and sets the notification which does something
-                            // If there is an active notification on a characteristic, clear
-                            // it first so it doesn't update the data field on the user interface.
+                            //If there is an active notification on a characteristic, clear
+                            //it first so it doesn't update the data field on the user interface.
                             if (mNotifyCharacteristic != null) {
                                 mBluetoothLeService.setCharacteristicNotification(
                                         mNotifyCharacteristic, false);
                                 mNotifyCharacteristic = null;
                             }
-
-                            //mUIUpdater = new UIUpdater(new Runnable(){
-                            //    @Override
-                            //    public void run(){
                             mBluetoothLeService.readCharacteristic(characteristic);
-                            //    }
-                            //});
-
-                            //mUIUpdater.startUpdates();
-
 
                         }
                         if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
@@ -166,6 +155,7 @@ public class DeviceControlActivity extends Activity {
                             mBluetoothLeService.setCharacteristicNotification(
                                     characteristic, true);
                         }
+
                         return true;
                     }
                     return false;
@@ -198,13 +188,22 @@ public class DeviceControlActivity extends Activity {
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
 
+        Button StartScreenBtn = findViewById(R.id.StartBtn);
+        StartScreenBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(),StartScreen.class);
+                startActivity(startIntent);
+            }
+        });
 
+        registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
+        //registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
         if (mBluetoothLeService != null) {
             final boolean result = mBluetoothLeService.connect(mDeviceAddress);
             Log.d(TAG, "Connect request result=" + result);
@@ -214,15 +213,15 @@ public class DeviceControlActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        unregisterReceiver(mGattUpdateReceiver);
+        //unregisterReceiver(mGattUpdateReceiver);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unregisterReceiver(mGattUpdateReceiver);
         unbindService(mServiceConnection);
         mBluetoothLeService = null;
-        //mUIUpdater.stopUpdates();
     }
 
     @Override
@@ -333,68 +332,5 @@ public class DeviceControlActivity extends Activity {
         intentFilter.addAction(BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED);
         intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
         return intentFilter;
-    }
-
-    /**
-     * A class used to perform periodical updates,
-     * specified inside a runnable object. An update interval
-     * may be specified (otherwise, the class will perform the
-     * update every 2 seconds).
-     *
-     * @author Carlos Simões
-     */
-    public class UIUpdater {
-        // Create a Handler that uses the Main Looper to run in
-        private Handler mHandler = new Handler(Looper.getMainLooper());
-
-        private Runnable mStatusChecker;
-        private int UPDATE_INTERVAL = 100;
-
-        /**
-         * Creates an UIUpdater object, that can be used to
-         * perform UIUpdates on a specified time interval.
-         *
-         * @param uiUpdater A runnable containing the update routine.
-         */
-        public UIUpdater(final Runnable uiUpdater) {
-            mStatusChecker = new Runnable() {
-                @Override
-                public void run() {
-                    // Run the passed runnable
-                    uiUpdater.run();
-                    // Re-run it after the update interval
-                    mHandler.postDelayed(this, UPDATE_INTERVAL);
-                }
-            };
-        }
-
-        /**
-         * The same as the default constructor, but specifying the
-         * intended update interval.
-         *
-         * @param uiUpdater A runnable containing the update routine.
-         * @param interval  The interval over which the routine
-         *                  should run (milliseconds).
-         */
-        public UIUpdater(Runnable uiUpdater, int interval){
-            this(uiUpdater);
-            UPDATE_INTERVAL = interval;
-        }
-
-        /**
-         * Starts the periodical update routine (mStatusChecker
-         * adds the callback to the handler).
-         */
-        public synchronized void startUpdates(){
-            mStatusChecker.run();
-        }
-
-        /**
-         * Stops the periodical update routine from running,
-         * by removing the callback.
-         */
-        public synchronized void stopUpdates(){
-            mHandler.removeCallbacks(mStatusChecker);
-        }
     }
 }
